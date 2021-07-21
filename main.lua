@@ -12,6 +12,7 @@ function love.load()
 
     playerSizeX = 15
     playerSizeY = 15
+    playerSpeed = 200
 
     p1StartX = 500
     p1StartY = 400
@@ -19,7 +20,6 @@ function love.load()
     playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})
     playerOne.x = 500
     playerOne.y = 400
-    playerOne.speed = 200
     playerOne.direction = "up"
     playerOne.firstX = 507.5
     playerOne.firstY = 407.5
@@ -51,20 +51,20 @@ function love.update(dt)
         end
 
         if playerOne.direction == "right" then
-            playerOne.x = playerOne.x + playerOne.speed * dt
-            playerOne:setX(px + playerOne.speed * dt)
+            playerOne.x = playerOne.x + playerSpeed * dt
+            playerOne:setX(px + playerSpeed * dt)
         end
         if playerOne.direction == "left" then
-            playerOne.x = playerOne.x - playerOne.speed * dt
-            playerOne:setX(px - playerOne.speed * dt)
+            playerOne.x = playerOne.x - playerSpeed * dt
+            playerOne:setX(px - playerSpeed * dt)
         end
         if playerOne.direction == "up" then
-            playerOne.y = playerOne.y - playerOne.speed * dt
-            playerOne:setY(py - playerOne.speed * dt)
+            playerOne.y = playerOne.y - playerSpeed * dt
+            playerOne:setY(py - playerSpeed * dt)
         end
         if playerOne.direction == "down" then
-            playerOne.y = playerOne.y + playerOne.speed * dt
-            playerOne:setY(py + playerOne.speed * dt)
+            playerOne.y = playerOne.y + playerSpeed * dt
+            playerOne:setY(py + playerSpeed * dt)
         end
 
         
