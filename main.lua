@@ -37,16 +37,6 @@ function love.update(dt)
     world:update(dt)
 
     if playerOne.body then
-        if love.keyboard.isDown("d") then
-            playerOne.direction = "right"
-        elseif love.keyboard.isDown("a") then
-            playerOne.direction = "left"
-        elseif love.keyboard.isDown("w") then
-            playerOne.direction = "up"
-        elseif love.keyboard.isDown("s") then
-            playerOne.direction = "down"
-        end
-        
         local px, py = playerOne:getPosition()
 
         if playerOne.direction == "right" then
@@ -96,21 +86,25 @@ end
 --]]
 function love.keypressed(key)
     if key == "d" then
+        playerOne.direction = "right"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
     if key == "a" then
+        playerOne.direction = "left"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
     if key == "w" then
+        playerOne.direction = "up"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
     if key == "s" then
+        playerOne.direction = "down"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
