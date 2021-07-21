@@ -2,7 +2,7 @@
     LOAD FUNCTION
 --]]
 function love.load()
-    love.window.setMode(1000, 800)
+    love.window.setMode(1400, 900)
 
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
@@ -67,13 +67,14 @@ function love.draw()
     world:draw()
 
     love.graphics.setColor(1, 0.6, 0.6)
-    love.graphics.setLineWidth(4)
+    love.graphics.setLineWidth(9)
     love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x + 7.5, playerOne.y + 7.5)
 
     for i = 1, #playerOne.lines do
         local line = playerOne.lines[i]
 
         love.graphics.line(line[1], line[2], line[3], line[4])
+        love.graphics.circle("fill", line[3], line[4], 4.5)
     end
 
     love.graphics.setLineWidth(1)
