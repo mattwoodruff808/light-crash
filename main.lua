@@ -9,6 +9,7 @@ function love.load()
     world:setQueryDebugDrawing(true)
 
     world:addCollisionClass('PlayerOne')
+    world:addCollisionClass('Trail')
 
     playerSizeX = 15
     playerSizeY = 15
@@ -54,9 +55,7 @@ function love.update(dt)
         if playerOne.direction == "down" then
             playerOne.y = playerOne.y + playerSpeed * dt
             playerOne:setY(py + playerSpeed * dt)
-        end
-
-        
+        end  
     end
 end
 
@@ -86,25 +85,25 @@ end
     KEYPRESSED FUNCTION
 --]]
 function love.keypressed(key)
-    if key == "d" then
+    if key == "d" and playerOne.direction ~= "left" then
         playerOne.direction = "right"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
-    if key == "a" then
+    if key == "a" and playerOne.direction ~= "right" then
         playerOne.direction = "left"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
-    if key == "w" then
+    if key == "w" and playerOne.direction ~= "down" then
         playerOne.direction = "up"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
-    if key == "s" then
+    if key == "s" and playerOne.direction ~= "up" then
         playerOne.direction = "down"
         drawPlayerLine()
         playerOne.firstX = playerOne.lastX
