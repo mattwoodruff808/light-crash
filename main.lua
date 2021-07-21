@@ -4,6 +4,9 @@
 function love.load()
     love.window.setMode(1400, 900)
 
+    sprites = {}
+    sprites.redShip = love.graphics.newImage('sprites/red-ship.png')
+
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
     world:setQueryDebugDrawing(true)
@@ -77,8 +80,7 @@ function love.draw()
     end
 
     love.graphics.setLineWidth(1)
-    love.graphics.setColor(1, 0, 0)
-    love.graphics.rectangle("fill", playerOne.x, playerOne.y, playerSizeX, playerSizeY)
+    love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y)
 end
 
 --[[
