@@ -14,8 +14,8 @@ function love.load()
     playerSizeY = 15
     playerSpeed = 200
 
-    p1StartX = 500
-    p1StartY = 400
+    local p1StartX = 500
+    local p1StartY = 400
 
     playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})
     playerOne.x = 500
@@ -25,8 +25,7 @@ function love.load()
     playerOne.firstY = 407.5
     playerOne.lastX = 0
     playerOne.lastY = 0
-
-    playerOneLines = {}
+    playerOne.lines = {}
 
     playerTwo = {}
 end
@@ -81,8 +80,8 @@ function love.draw()
     love.graphics.setLineWidth(4)
     love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x + 7.5, playerOne.y + 7.5)
 
-    for i = 1, #playerOneLines do
-        local line = playerOneLines[i]
+    for i = 1, #playerOne.lines do
+        local line = playerOne.lines[i]
 
         love.graphics.line(line[1], line[2], line[3], line[4])
     end
@@ -128,5 +127,5 @@ function drawPlayerLine()
     playerOne.lastY = py
 
     local line = {playerOne.firstX, playerOne.firstY, playerOne.lastX, playerOne.lastY}
-    table.insert(playerOneLines, line)
+    table.insert(playerOne.lines, line)
 end
