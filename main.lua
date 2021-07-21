@@ -38,8 +38,6 @@ function love.update(dt)
     world:update(dt)
 
     if playerOne.body then
-        local px, py = playerOne:getPosition()
-
         if love.keyboard.isDown("d") then
             playerOne.direction = "right"
         elseif love.keyboard.isDown("a") then
@@ -49,6 +47,8 @@ function love.update(dt)
         elseif love.keyboard.isDown("s") then
             playerOne.direction = "down"
         end
+        
+        local px, py = playerOne:getPosition()
 
         if playerOne.direction == "right" then
             playerOne.x = playerOne.x + playerSpeed * dt
@@ -84,8 +84,7 @@ function love.draw()
     for i = 1, #playerOneLines do
         local line = playerOneLines[i]
 
-        love.graphics.setLineWidth(4)
-        love.graphics.line(playerOneLines[i][1], playerOneLines[i][2], playerOneLines[i][3], playerOneLines[i][4])
+        love.graphics.line(line[1], line[2], line[3], line[4])
     end
 
     love.graphics.setLineWidth(1)
