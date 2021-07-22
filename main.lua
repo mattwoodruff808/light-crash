@@ -65,6 +65,10 @@ function love.update(dt)
             playerOne:setY(py + playerSpeed * dt)
         end  
     end
+
+    if playerOne:enter('Trail') then
+        destroyPlayerOne()
+    end
 end
 
 --[[
@@ -76,28 +80,32 @@ function love.draw()
     love.graphics.setColor(1, 0.6, 0.6)
     love.graphics.setLineWidth(8)
 
-    if playerOne.direction == "right" then
-        love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x - 15, playerOne.y)
-    end
-    if playerOne.direction == "left" then
-        love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x + 15, playerOne.y)
-    end
-    if playerOne.direction == "up" then
-        love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x, playerOne.y + 15)
-    end
-    if playerOne.direction == "down" then
-        love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x, playerOne.y - 15)
+    if playerOne.body then
+        if playerOne.direction == "right" then
+            love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x - 15, playerOne.y)
+        end
+        if playerOne.direction == "left" then
+            love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x + 15, playerOne.y)
+        end
+        if playerOne.direction == "up" then
+            love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x, playerOne.y + 15)
+        end
+        if playerOne.direction == "down" then
+            love.graphics.line(playerOne.firstX, playerOne.firstY, playerOne.x, playerOne.y - 15)
+        end
+    
+        for i = 1, #playerOne.lines do
+            local line = playerOne.lines[i]
+
+            love.graphics.line(line[1], line[2], line[3], line[4])
+            love.graphics.circle("fill", line[3], line[4], 4)
+        end
+    
+        love.graphics.setLineWidth(1)
+        love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
     end
 
-    for i = 1, #playerOne.lines do
-        local line = playerOne.lines[i]
-
-        love.graphics.line(line[1], line[2], line[3], line[4])
-        love.graphics.circle("fill", line[3], line[4], 4)
-    end
-
-    love.graphics.setLineWidth(1)
-    love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+    love.graphics.print(#playerOne.lineColliders, 30, 30)
 end
 
 --[[
@@ -166,4 +174,26 @@ function drawPlayerLine()
         local lineCollider = world:newLineCollider(playerOne.firstX, playerOne.firstY, playerOne.lastX + (22 * playerOne.directionLeftRight), playerOne.lastY, {collision_class = 'Trail'})
         table.insert(playerOne.lineColliders, lineCollider)
     end
+end
+
+function destroyPlayerOne()
+    local i = #playerOne.lines
+    while i > -1 do
+        if playerOne.lines[i] ~= nil then
+            playerOne.lines[i] = nil
+        end
+        table.remove(playerOne.lines, i)
+        i = i - 1
+    end
+
+    local j = #playerOne.lineColliders
+    while j > -1 do
+        if playerOne.lineColliders[j] ~= nil then
+            playerOne.lineColliders[j]:destroy()
+        end
+        table.remove(playerOne.lineColliders, j)
+        j = j - 1
+    end
+
+    playerOne:destroy()
 end
