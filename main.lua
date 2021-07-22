@@ -28,6 +28,10 @@ function love.load()
     playerOne.direction = "up"
     playerOne.directionUpDown = 1
     playerOne.directionLeftRight = 0
+    playerOne.rightOnce = false
+    playerOne.leftOnce = false
+    playerOne.upOnce = true
+    playerOne.downOnce = false
     playerOne.radians = 0
     playerOne.firstX = 515
     playerOne.firstY = 415
@@ -112,35 +116,51 @@ end
     KEYPRESSED FUNCTION
 --]]
 function love.keypressed(key)
-    if key == "d" and playerOne.direction ~= "left" then
+    if key == "d" and playerOne.direction ~= "left" and playerOne.rightOnce == false then
         playerOne.direction = "right"
         playerOne.directionLeftRight = -1
         playerOne.radians = math.pi/2
         drawPlayerLine()
+        playerOne.rightOnce = true
+        playerOne.leftOnce = false
+        playerOne.upOnce = false
+        playerOne.downOnce = false
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
-    if key == "a" and playerOne.direction ~= "right" then
+    if key == "a" and playerOne.direction ~= "right" and playerOne.leftOnce == false then
         playerOne.direction = "left"
         playerOne.directionLeftRight = 1
         playerOne.radians = math.pi*3/2
         drawPlayerLine()
+        playerOne.rightOnce = false
+        playerOne.leftOnce = true
+        playerOne.upOnce = false
+        playerOne.downOnce = false
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
-    if key == "w" and playerOne.direction ~= "down" then
+    if key == "w" and playerOne.direction ~= "down" and playerOne.upOnce == false then
         playerOne.direction = "up"
         playerOne.directionUpDown = 1
         playerOne.radians = 0
         drawPlayerLine()
+        playerOne.rightOnce = false
+        playerOne.leftOnce = false
+        playerOne.upOnce = true
+        playerOne.downOnce = false
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
-    if key == "s" and playerOne.direction ~= "up" then
+    if key == "s" and playerOne.direction ~= "up" and playerOne.downOnce == false then
         playerOne.direction = "down"
         playerOne.directionUpDown = -1
         playerOne.radians = math.pi
         drawPlayerLine()
+        playerOne.rightOnce = false
+        playerOne.leftOnce = false
+        playerOne.upOnce = false
+        playerOne.downOnce = true
         playerOne.firstX = playerOne.lastX
         playerOne.firstY = playerOne.lastY
     end
