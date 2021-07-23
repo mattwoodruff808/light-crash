@@ -1,12 +1,12 @@
 --[[
     PLAYER TWO VARIABLES
 --]]
-local p2StartX = 502
+local p2StartX = 1322
 local p2StartY = 802
 
 playerTwo = world:newRectangleCollider(p2StartX, p2StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerTwo'})
 playerTwo:setFixedRotation(true)
-playerTwo.x = 515
+playerTwo.x = 1335
 playerTwo.y = 815
 playerTwo.direction = "up"
 playerTwo.directionUpDown = 1
@@ -16,7 +16,7 @@ playerTwo.leftOnce = false
 playerTwo.upOnce = true
 playerTwo.downOnce = false
 playerTwo.radians = 0
-playerTwo.firstX = 515
+playerTwo.firstX = 1335
 playerTwo.firstY = 815
 playerTwo.lastX = 0
 playerTwo.lastY = 0
