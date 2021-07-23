@@ -1,12 +1,16 @@
 --[[
     PLAYER ONE VARIABLES
 --]]
-local p1StartX = 502
-local p1StartY = 402
+-- local p1StartX = 502
+-- local p1StartY = 402
+local p1StartX = 52
+local p1StartY = 802
 
 playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})    playerOne:setFixedRotation(true)
-playerOne.x = 515
-playerOne.y = 415
+-- playerOne.x = 515
+-- playerOne.y = 415
+playerOne.x = 65
+playerOne.y = 815
 playerOne.direction = "up"
 playerOne.directionUpDown = 1
 playerOne.directionLeftRight = 0
@@ -15,8 +19,10 @@ playerOne.leftOnce = false
 playerOne.upOnce = true
 playerOne.downOnce = false
 playerOne.radians = 0
-playerOne.firstX = 515
-playerOne.firstY = 415
+-- playerOne.firstX = 515
+-- playerOne.firstY = 415
+playerOne.firstX = 65
+playerOne.firstY = 815
 playerOne.lastX = 0
 playerOne.lastY = 0
 playerOne.lines = {}
@@ -48,6 +54,10 @@ function playerOneUpdate(dt)
     end
 
     if playerOne:enter('Trail') then
+        destroyPlayerOne()
+    end
+
+    if playerOne:enter('PlayerTwo') then
         destroyPlayerOne()
     end
 end
@@ -88,7 +98,7 @@ function drawPlayerOne()
 end
 
 --[[
-    PLAYER ONE KEYPRESSED FUNCTION
+    PLAYER ONE KEYPRESSED
 --]]
 function playerOneKeypressed(key)
     if playerOne.body then
@@ -144,7 +154,7 @@ function playerOneKeypressed(key)
 end
 
 --[[
-    PLAYER ONE HELPER FUNCTIONS
+    PLAYER ONE HELPERS
 --]]
 function drawPlayerOneLine()
     if playerOne.body then

@@ -6,12 +6,14 @@ function love.load()
 
     sprites = {}
     sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
+    sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
 
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
     world:setQueryDebugDrawing(true)
 
     world:addCollisionClass('PlayerOne')
+    world:addCollisionClass('PlayerTwo')
     world:addCollisionClass('Trail')
     
     playerSizeX = 25
@@ -19,6 +21,7 @@ function love.load()
     playerSpeed = 200
 
     require('playerOne')
+    require('playerTwo')
 end
 
 --[[
@@ -28,6 +31,7 @@ function love.update(dt)
     world:update(dt)
 
     playerOneUpdate(dt)
+    playerTwoUpdate(dt)
 end
 
 --[[
@@ -37,6 +41,7 @@ function love.draw()
     world:draw()
 
     drawPlayerOne()
+    drawPlayerTwo()
 end
 
 --[[
@@ -44,4 +49,5 @@ end
 --]]
 function love.keypressed(key)
     playerOneKeypressed(key)
+    playerTwoKeypressed(key)
 end
