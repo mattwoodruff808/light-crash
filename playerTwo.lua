@@ -9,8 +9,8 @@ playerTwo:setFixedRotation(true)
 playerTwo.x = 1335
 playerTwo.y = 815
 playerTwo.direction = "up"
-playerTwo.directionUpDown = 1
-playerTwo.directionLeftRight = 0
+-- playerTwo.directionUpDown = 1
+-- playerTwo.directionLeftRight = 0
 playerTwo.rightOnce = false
 playerTwo.leftOnce = false
 playerTwo.upOnce = true
@@ -68,15 +68,31 @@ function drawPlayerTwo()
     if playerTwo.body then
         if playerTwo.direction == "right" then
             love.graphics.line(playerTwo.firstX, playerTwo.firstY, playerTwo.x - 15, playerTwo.y)
+            if distanceBetween(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y) > 18 then
+                local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.x - 15, playerTwo.y, {collision_class = 'Trail'})
+                table.insert(playerTwo.lineColliders, lineCollider)
+            end
         end
         if playerTwo.direction == "left" then
             love.graphics.line(playerTwo.firstX, playerTwo.firstY, playerTwo.x + 15, playerTwo.y)
+            if distanceBetween(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y) > 18 then
+                local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.x + 15, playerTwo.y, {collision_class = 'Trail'})
+                table.insert(playerTwo.lineColliders, lineCollider)
+            end
         end
         if playerTwo.direction == "up" then
             love.graphics.line(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y + 15)
+            if distanceBetween(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y) > 18 then
+                local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y + 15, {collision_class = 'Trail'})
+                table.insert(playerTwo.lineColliders, lineCollider)
+            end
         end
         if playerTwo.direction == "down" then
             love.graphics.line(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y - 15)
+            if distanceBetween(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y) > 18 then
+                local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.x, playerTwo.y - 15, {collision_class = 'Trail'})
+                table.insert(playerTwo.lineColliders, lineCollider)
+            end
         end
 
         for i = 1, #playerTwo.lines do
@@ -100,7 +116,7 @@ function playerTwoKeypressed(key)
     if playerTwo.body then
         if key == "right" and playerTwo.direction ~= "left" and playerTwo.rightOnce == false then
             playerTwo.direction = "right"
-            playerTwo.directionLeftRight = -1
+            -- playerTwo.directionLeftRight = -1
             playerTwo.radians = math.pi/2
             drawPlayerTwoLine()
             playerTwo.rightOnce = true
@@ -112,7 +128,7 @@ function playerTwoKeypressed(key)
         end
         if key == "left" and playerTwo.direction ~= "right" and playerTwo.leftOnce == false then
             playerTwo.direction = "left"
-            playerTwo.directionLeftRight = 1
+            -- playerTwo.directionLeftRight = 1
             playerTwo.radians = math.pi*3/2
             drawPlayerTwoLine()
             playerTwo.rightOnce = false
@@ -124,7 +140,7 @@ function playerTwoKeypressed(key)
         end
         if key == "up" and playerTwo.direction ~= "down" and playerTwo.upOnce == false then
             playerTwo.direction = "up"
-            playerTwo.directionUpDown = 1
+            -- playerTwo.directionUpDown = 1
             playerTwo.radians = 0
             drawPlayerTwoLine()
             playerTwo.rightOnce = false
@@ -136,7 +152,7 @@ function playerTwoKeypressed(key)
         end
         if key == "down" and playerTwo.direction ~= "up" and playerTwo.downOnce == false then
             playerTwo.direction = "down"
-            playerTwo.directionUpDown = -1
+            -- playerTwo.directionUpDown = -1
             playerTwo.radians = math.pi
             drawPlayerTwoLine()
             playerTwo.rightOnce = false
@@ -163,22 +179,24 @@ function drawPlayerTwoLine()
     local line = {playerTwo.firstX, playerTwo.firstY, playerTwo.lastX, playerTwo.lastY}
     table.insert(playerTwo.lines, line)
 
-    if playerTwo.direction == "right" then
-        local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX, playerTwo.lastY + (22 * playerTwo.directionUpDown), {collision_class = 'Trail'})
-        table.insert(playerTwo.lineColliders, lineCollider)
-    end
-    if playerTwo.direction == "left" then
-        local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX, playerTwo.lastY + (22 * playerTwo.directionUpDown), {collision_class = 'Trail'})
-        table.insert(playerTwo.lineColliders, lineCollider)
-    end
-    if playerTwo.direction == "up" then
-        local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX + (22 * playerTwo.directionLeftRight), playerTwo.lastY, {collision_class = 'Trail'})
-        table.insert(playerTwo.lineColliders, lineCollider)
-    end
-    if playerTwo.direction == "down" then
-        local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX + (22 * playerTwo.directionLeftRight), playerTwo.lastY, {collision_class = 'Trail'})
-        table.insert(playerTwo.lineColliders, lineCollider)
-    end
+    -- NOTE: I am keeping this for now, because this might be easier on the CPU rates
+
+    -- if playerTwo.direction == "right" then
+    --     local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX, playerTwo.lastY + (22 * playerTwo.directionUpDown), {collision_class = 'Trail'})
+    --     table.insert(playerTwo.lineColliders, lineCollider)
+    -- end
+    -- if playerTwo.direction == "left" then
+    --     local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX, playerTwo.lastY + (22 * playerTwo.directionUpDown), {collision_class = 'Trail'})
+    --     table.insert(playerTwo.lineColliders, lineCollider)
+    -- end
+    -- if playerTwo.direction == "up" then
+    --     local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX + (22 * playerTwo.directionLeftRight), playerTwo.lastY, {collision_class = 'Trail'})
+    --     table.insert(playerTwo.lineColliders, lineCollider)
+    -- end
+    -- if playerTwo.direction == "down" then
+    --     local lineCollider = world:newLineCollider(playerTwo.firstX, playerTwo.firstY, playerTwo.lastX + (22 * playerTwo.directionLeftRight), playerTwo.lastY, {collision_class = 'Trail'})
+    --     table.insert(playerTwo.lineColliders, lineCollider)
+    -- end
 end
 
 function destroyPlayerTwo()
