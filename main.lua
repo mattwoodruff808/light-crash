@@ -31,6 +31,7 @@ function love.load()
     playerSizeY = 25
     playerSpeed = 200
 
+    require('menu')
     require('playerOne')
     require('playerTwo')
 end
@@ -66,6 +67,9 @@ function love.keypressed(key)
     playerTwoKeypressed(key)
 end
 
+--[[
+    HELPER FUNCTION
+--]]
 function distanceBetween(x1, y1, x2, y2)
     return math.sqrt( (x2 - x1)^2 + (y2 - y1)^2 )
 end

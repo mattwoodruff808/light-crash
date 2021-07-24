@@ -110,7 +110,7 @@ function drawPlayerTwo()
         love.graphics.draw(sprites.blueShip, playerTwo.x, playerTwo.y, playerTwo.radians, nil, nil, 15, 15)
     end
 
-    love.graphics.print(#playerTwo.lineColliders, 1360, 30)
+    -- love.graphics.print(#playerTwo.lineColliders, 1360, 30)
 end
 
 --[[

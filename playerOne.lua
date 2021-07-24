@@ -114,7 +114,7 @@ function drawPlayerOne()
         love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
     end
 
-    love.graphics.print(#playerOne.lineColliders, 30, 30)
+    -- love.graphics.print(#playerOne.lineColliders, 30, 30)
 end
 
 --[[
