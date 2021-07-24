@@ -4,24 +4,26 @@
 local p2StartX = 1322
 local p2StartY = 802
 
-playerTwo = world:newRectangleCollider(p2StartX, p2StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerTwo'})
-playerTwo:setFixedRotation(true)
-playerTwo.x = 1335
-playerTwo.y = 815
-playerTwo.direction = "up"
--- playerTwo.directionUpDown = 1
--- playerTwo.directionLeftRight = 0
-playerTwo.rightOnce = false
-playerTwo.leftOnce = false
-playerTwo.upOnce = true
-playerTwo.downOnce = false
-playerTwo.radians = 0
-playerTwo.firstX = 1335
-playerTwo.firstY = 815
-playerTwo.lastX = 0
-playerTwo.lastY = 0
-playerTwo.lines = {}
-playerTwo.lineColliders = {}
+if gameState == "game" then
+    playerTwo = world:newRectangleCollider(p2StartX, p2StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerTwo'})
+    playerTwo:setFixedRotation(true)
+    playerTwo.x = 1335
+    playerTwo.y = 815
+    playerTwo.direction = "up"
+    -- playerTwo.directionUpDown = 1
+    -- playerTwo.directionLeftRight = 0
+    playerTwo.rightOnce = false
+    playerTwo.leftOnce = false
+    playerTwo.upOnce = true
+    playerTwo.downOnce = false
+    playerTwo.radians = 0
+    playerTwo.firstX = 1335
+    playerTwo.firstY = 815
+    playerTwo.lastX = 0
+    playerTwo.lastY = 0
+    playerTwo.lines = {}
+    playerTwo.lineColliders = {}
+end
 
 
 --[[

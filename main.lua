@@ -42,8 +42,10 @@ end
 function love.update(dt)
     world:update(dt)
 
-    playerOneUpdate(dt)
-    playerTwoUpdate(dt)
+    if gameState == "game" then
+        playerOneUpdate(dt)
+        playerTwoUpdate(dt)
+    end
 end
 
 --[[
@@ -52,19 +54,23 @@ end
 function love.draw()
     world:draw()
 
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(sprites.background, 0, 0)
+    if gameState == "game" then
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.draw(sprites.background, 0, 0)
 
-    drawPlayerOne()
-    drawPlayerTwo()
+        drawPlayerOne()
+        drawPlayerTwo()
+    end
 end
 
 --[[
     KEYPRESSED FUNCTION
 --]]
 function love.keypressed(key)
-    playerOneKeypressed(key)
-    playerTwoKeypressed(key)
+    if gameState == "game" then
+        playerOneKeypressed(key)
+        playerTwoKeypressed(key)
+    end
 end
 
 --[[
