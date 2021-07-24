@@ -54,6 +54,10 @@ end
 function love.draw()
     world:draw()
 
+    if gameState == "menu" then
+        drawMenu()
+    end
+
     if gameState == "game" then
         love.graphics.setColor(1, 1, 1)
         love.graphics.draw(sprites.background, 0, 0)
