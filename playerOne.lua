@@ -53,6 +53,10 @@ function playerOneUpdate(dt)
         end  
     end
 
+    if playerOne:enter('Border') then
+        destroyPlayerOne()
+    end
+
     if playerOne:enter('Trail') then
         destroyPlayerOne()
     end

@@ -49,6 +49,10 @@ function playerTwoUpdate(dt)
         end
     end
 
+    if playerTwo:enter('Border') then
+        destroyPlayerTwo()
+    end
+
     if playerTwo:enter('Trail') then
         destroyPlayerTwo()
     end
