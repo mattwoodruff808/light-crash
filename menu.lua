@@ -33,5 +33,5 @@ end
     MENU MOUSEPRESSED
 --]]
 function menuMousepressed(x, y, button)
-    
+    -- For clicking on menu options
 end
