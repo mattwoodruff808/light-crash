@@ -5,13 +5,14 @@ function love.load()
     love.window.setMode(1400, 900)
 
     sprites = {}
+    sprites.menuLogo = love.graphics.newImage('sprites/light-crash-logo.png')
     sprites.background = love.graphics.newImage('sprites/background-1400-900.png')
     sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
     sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
 
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
-    world:setQueryDebugDrawing(true)
+    -- world:setQueryDebugDrawing(true)
 
     world:addCollisionClass('Border')
     world:addCollisionClass('PlayerOne')
@@ -52,7 +53,7 @@ end
     DRAW FUNCTION
 --]]
 function love.draw()
-    world:draw()
+    -- world:draw()
 
     if gameState == "menu" then
         drawMenu()
@@ -75,6 +76,10 @@ function love.keypressed(key)
         playerOneKeypressed(key)
         playerTwoKeypressed(key)
     end
+end
+
+function love.mousepressed(x, y, button)
+    menuMousepressed(x, y, button)
 end
 
 --[[

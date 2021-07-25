@@ -3,7 +3,10 @@
 --]]
 gameState = "menu"
 -- gameState = "game"
-menuFontSize = love.graphics.newFont(50)
+
+menuState = 1
+
+otherTextFontSize = love.graphics.newFont(40)
 
 --[[
     MENU UPDATE
@@ -14,10 +17,19 @@ menuFontSize = love.graphics.newFont(50)
     MENU DRAW
 --]]
 function drawMenu()
-    love.graphics.setFont(menuFontSize)
-    love.graphics.printf("Light Bois", 0, 300, love.graphics.getWidth(), "center")
+    love.graphics.draw(sprites.menuLogo, 200, 50)
+
+    if menuState == 1 then
+        love.graphics.setFont(otherTextFontSize)
+        begin = love.graphics.printf("Begin", 0, 450, love.graphics.getWidth(), "center")
+
+        credits = love.graphics.printf("Credits", 0, 525, love.graphics.getWidth(), "center")
+    end
 end
 
 --[[
-    MENU KEYPRESSED
+    MENU MOUSEPRESSED
 --]]
+function menuMousepressed(x, y, button)
+    
+end
