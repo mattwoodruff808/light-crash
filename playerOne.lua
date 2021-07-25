@@ -112,6 +112,7 @@ function drawPlayerOne()
             love.graphics.circle("fill", line[3], line[4], 4)
         end
     
+        love.graphics.setColor(1, 1, 1)
         love.graphics.setLineWidth(1)
         love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
     end
