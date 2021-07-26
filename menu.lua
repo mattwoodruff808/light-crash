@@ -22,10 +22,9 @@ function drawMenu()
     end
 
     if menuState == 1 then
-        love.graphics.setFont(otherTextFontSize)
-        begin = love.graphics.printf("Play", 0, 450, love.graphics.getWidth(), "center")
+        love.graphics.draw(sprites.playText, 600, 400)
 
-        credits = love.graphics.printf("Credits", 0, 525, love.graphics.getWidth(), "center")
+        love.graphics.draw(sprites.creditsText, 550, 525)
     end
 end
 
