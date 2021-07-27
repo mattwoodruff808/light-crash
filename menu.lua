@@ -64,12 +64,13 @@ function drawMenu()
     end
 
     if menuState == 3 then
-        love.graphics.draw(sprites.classic, 550, 500)
+        love.graphics.draw(sprites.classic, 550, 450)
 
         -- Hovering over the Classic button
-        if mx > 550 and mx < 850 and my > 500 and my < 555 then
-            love.graphics.draw(sprites.orangeShip, 540, 515, math.pi/2)
-            love.graphics.draw(sprites.orangeShip, 855, 545, math.pi*3/2)
+        if mx > 550 and mx < 850 and my > 450 and my < 505 then
+            love.mouse.setCursor(pointer)
+            love.graphics.draw(sprites.orangeShip, 540, 465, math.pi/2)
+            love.graphics.draw(sprites.orangeShip, 855, 495, math.pi*3/2)
         end
     end
 
@@ -84,7 +85,7 @@ end
 function menuMousepressed(x, y, button)
     if menuState == 1 then
         -- Clicking on Play button
-        if x > 600 and x < 800 and y > 500 and y < 575 then
+        if x > 600 and x < 800 and y > 505 and y < 575 then
             if button == 1 then
                 menuState = 3
                 love.mouse.setCursor()
@@ -109,12 +110,13 @@ function menuMousepressed(x, y, button)
         end
     end
 
-    -- if menuState == 3 then
-    --     -- Clicking on the Classic button
-    --     if x > 550 and x < 850 and y > 500 and y < 555 then
-    --         if button == 1 then
-    --             menuState = 4
-    --         end
-    --     end
-    -- end
+    if menuState == 3 then
+        -- Clicking on the Classic button
+        if x > 550 and x < 850 and y > 450 and y < 505 then
+            if button == 1 then
+                menuState = 4
+                love.mouse.setCursor()
+            end
+        end
+    end
 end
