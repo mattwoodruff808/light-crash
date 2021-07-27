@@ -8,9 +8,12 @@ function love.load()
     sprites.menuLogo = love.graphics.newImage('sprites/light-crash-logo.png')
     sprites.playText = love.graphics.newImage('sprites/play-text.png')
     sprites.creditsText = love.graphics.newImage('sprites/credits-text.png')
+    sprites.backBtn = love.graphics.newImage('sprites/back-button.png')
     sprites.background = love.graphics.newImage('sprites/background-1400-900.png')
     sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
     sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
+    sprites.orangeShip = love.graphics.newImage('sprites/orange-ship30.png')
+    sprites.cyanShip = love.graphics.newImage('sprites/cyan-ship30.png')
 
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
