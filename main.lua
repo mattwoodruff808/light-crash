@@ -4,6 +4,8 @@
 function love.load()
     love.window.setMode(1400, 900)
 
+    lcFont = love.graphics.newFont('fonts/BalooChettan2-Regular.ttf', 40)
+
     sprites = {}
     sprites.menuLogo = love.graphics.newImage('sprites/light-crash-logo.png')
     sprites.playText = love.graphics.newImage('sprites/play-text.png')

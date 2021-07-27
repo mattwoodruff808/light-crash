@@ -58,7 +58,9 @@ function drawMenu()
     end
 
     if menuState == 2 then
-        love.graphics.print("Credits Success", 100, 100)
+        love.graphics.setFont(lcFont)
+        love.graphics.printf("Credits", 550, 400, 200, 'center')
+        love.graphics.printf("Game, Art, Music created and designed by Matt Woodruff", 305, 500, 700, 'center')
     end
 
     if menuState == 3 then
