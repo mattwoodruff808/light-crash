@@ -64,7 +64,17 @@ function drawMenu()
     end
 
     if menuState == 3 then
-        love.graphics.print("Play Success", 100, 100)
+        love.graphics.draw(sprites.classic, 550, 500)
+
+        -- Hovering over the Classic button
+        if mx > 550 and mx < 850 and my > 500 and my < 555 then
+            love.graphics.draw(sprites.orangeShip, 540, 515, math.pi/2)
+            love.graphics.draw(sprites.orangeShip, 855, 545, math.pi*3/2)
+        end
+    end
+
+    if menuState == 4 then
+        love.graphics.printf("Ship Select", 550, 500, 300)
     end
 end
 
@@ -91,10 +101,20 @@ function menuMousepressed(x, y, button)
     end
 
     if menuState == 2 or menuState == 3 then
+        -- Clicking on the Back button
         if x > 100 and x < 215 and y > 800 and y < 840 then
             if button == 1 then
                 menuState = 1
             end
         end
     end
+
+    -- if menuState == 3 then
+    --     -- Clicking on the Classic button
+    --     if x > 550 and x < 850 and y > 500 and y < 555 then
+    --         if button == 1 then
+    --             menuState = 4
+    --         end
+    --     end
+    -- end
 end
