@@ -91,6 +91,10 @@ function love.keypressed(key)
         playerOneKeypressed(key)
         playerTwoKeypressed(key)
     end
+
+    if gameState == "menu" then
+        menuKeypressed(key)
+    end
 end
 
 function love.mousepressed(x, y, button)

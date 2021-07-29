@@ -24,8 +24,9 @@ p1SelectTable.top = true
 
 p2SelectTable = {}
 p2SelectTable.position = "top"
-p2SelectTable.x = 625
-p2SelectTable.y = 260
+p2SelectTable.x = shipSelectPositions.two[1]
+p2SelectTable.y = shipSelectPositions.two[2]
+p2SelectTable.top = true
 
 --[[
     MENU UPDATE
@@ -164,5 +165,14 @@ function menuMousepressed(x, y, button)
                 love.mouse.setCursor()
             end
         end
+    end
+end
+
+--[[
+    MENU KEYPRESSED
+--]]
+function menuKeypressed(key)
+    if menuState == 4 then
+
     end
 end
