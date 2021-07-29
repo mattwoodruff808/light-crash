@@ -11,15 +11,16 @@ pointer = love.mouse.getSystemCursor('hand')
 shipSelectPositions = {}
 shipSelectPositions.one = {515, 260}
 shipSelectPositions.two = {625, 260}
-shipSelectPositions.three = { 260}
-shipSelectPositions.four = { 365}
-shipSelectPositions.five = { 365}
-shipSelectPositions.six = { 365}
+shipSelectPositions.three = {735, 260}
+shipSelectPositions.four = {515, 365}
+shipSelectPositions.five = {625, 365}
+shipSelectPositions.six = {735, 365}
 
 p1SelectTable = {}
-p1SelectTable.position = "top"
-p1SelectTable.x = 515
-p1SelectTable.y = 260
+p1SelectTable.position = 1
+p1SelectTable.x = shipSelectPositions.one[1]
+p1SelectTable.y = shipSelectPositions.one[2]
+p1SelectTable.top = true
 
 p2SelectTable = {}
 p2SelectTable.position = "top"
@@ -102,8 +103,16 @@ function drawMenu()
         love.graphics.draw(sprites.cyanShip, 670, 410, nil, 2)
         love.graphics.draw(sprites.orangeShip, 780, 410, nil, 2)
 
-        love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
-        love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
+        if p1SelectTable.top == true then
+            love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
+        else
+            love.graphics.draw(sprites.p1SelectBottom, p1SelectTable.x, p1SelectTable.y)
+        end
+        if p1SelectTable.top == true then
+            love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
+        else
+            love.graphics.draw(sprites.p2SelectBottom, p2SelectTable.x, p2SelectTable.y)
+        end
     end
 end
 
