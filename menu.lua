@@ -8,6 +8,24 @@ menuState = 1
 
 pointer = love.mouse.getSystemCursor('hand')
 
+shipSelectPositions = {}
+shipSelectPositions.one = {515, 260}
+shipSelectPositions.two = {625, 260}
+shipSelectPositions.three = { 260}
+shipSelectPositions.four = { 365}
+shipSelectPositions.five = { 365}
+shipSelectPositions.six = { 365}
+
+p1SelectTable = {}
+p1SelectTable.position = "top"
+p1SelectTable.x = 515
+p1SelectTable.y = 260
+
+p2SelectTable = {}
+p2SelectTable.position = "top"
+p2SelectTable.x = 625
+p2SelectTable.y = 260
+
 --[[
     MENU UPDATE
 --]]
@@ -45,7 +63,7 @@ function drawMenu()
         end
     end
 
-    if menuState == 2 or menuState == 3 then
+    if menuState == 2 or menuState == 3 or menuState == 4 then
         love.graphics.draw(sprites.backBtn, 100, 800)
 
         -- Hovering over the Back button
@@ -75,7 +93,17 @@ function drawMenu()
     end
 
     if menuState == 4 then
-        love.graphics.printf("Ship Select", 550, 500, 300)
+        love.graphics.draw(sprites.chooseShip, 220, 50)
+
+        love.graphics.draw(sprites.redShip, 560, 300, nil, 2)
+        love.graphics.draw(sprites.blueShip, 670, 300, nil, 2)
+        love.graphics.draw(sprites.greenShip, 780, 300, nil, 2)
+        love.graphics.draw(sprites.yellowShip, 560, 410, nil, 2)
+        love.graphics.draw(sprites.cyanShip, 670, 410, nil, 2)
+        love.graphics.draw(sprites.orangeShip, 780, 410, nil, 2)
+
+        love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
+        love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
     end
 end
 
@@ -101,11 +129,20 @@ function menuMousepressed(x, y, button)
         end
     end
 
-    if menuState == 2 or menuState == 3 then
+    if menuState == 2 or menuState == 3 or menuState == 4 then
         -- Clicking on the Back button
         if x > 100 and x < 215 and y > 800 and y < 840 then
             if button == 1 then
                 menuState = 1
+            end
+        end
+    end
+
+    if menuState == 4 then
+        -- Clicking on the Back button
+        if x > 100 and x < 215 and y > 800 and y < 840 then
+            if button == 1 then
+                menuState = 3
             end
         end
     end
