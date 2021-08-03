@@ -21,7 +21,6 @@ p1SelectTable.position = 1
 p1SelectTable.x = shipSelectPositions.one[1]
 p1SelectTable.y = shipSelectPositions.one[2]
 p1SelectTable.top = true
-p1SelectTable.rightOnce = false
 
 -- p2SelectTable = {}
 -- p2SelectTable.position = "top"
@@ -140,7 +139,7 @@ function menuMousepressed(x, y, button)
         end
     end
 
-    if menuState == 2 or menuState == 3 or menuState == 4 then
+    if menuState == 2 or menuState == 3 then
         -- Clicking on the Back button
         if x > 100 and x < 215 and y > 800 and y < 840 then
             if button == 1 then
@@ -153,6 +152,10 @@ function menuMousepressed(x, y, button)
         -- Clicking on the Back button
         if x > 100 and x < 215 and y > 800 and y < 840 then
             if button == 1 then
+                p1SelectTable.position = 1
+                p1SelectTable.x = shipSelectPositions.one[1]
+                p1SelectTable.y = shipSelectPositions.one[2]
+                p1SelectTable.top = true
                 menuState = 3
             end
         end
@@ -174,6 +177,13 @@ end
 --]]
 function menuKeypressed(key)
     if menuState == 4 then
+        -- P1 pos2 => right
+        if key == "d" and p1SelectTable.position == 2 then
+            p1SelectTable.top = true
+            p1SelectTable.x = shipSelectPositions.three[1]
+            p1SelectTable.y = shipSelectPositions.three[2]
+            p1SelectTable.position = 3
+        end
         -- P1 pos1 => right
         if key == "d" and p1SelectTable.position == 1 then
             p1SelectTable.top = true
@@ -202,13 +212,6 @@ function menuKeypressed(key)
             p1SelectTable.y = shipSelectPositions.five[2]
             p1SelectTable.position = 5
         end
-        -- P1 pos2 => right
-        if key == "d" and p1SelectTable.position == 2 then
-            p1SelectTable.top = true
-            p1SelectTable.x = shipSelectPositions.three[1]
-            p1SelectTable.y = shipSelectPositions.three[2]
-            p1SelectTable.position = 3
-        end
         -- P1 pos3 => left
         if key == "a" and p1SelectTable.position == 3 then
             p1SelectTable.top = true
@@ -230,6 +233,13 @@ function menuKeypressed(key)
             p1SelectTable.y = shipSelectPositions.one[2]
             p1SelectTable.position = 1
         end
+        -- P1 pos5 => right
+        if key == "d" and p1SelectTable.position == 5 then
+            p1SelectTable.top = false
+            p1SelectTable.x = shipSelectPositions.six[1]
+            p1SelectTable.y = shipSelectPositions.six[2]
+            p1SelectTable.position = 6
+        end
         -- P1 pos4 => right
         if key == "d" and p1SelectTable.position == 4 then
             p1SelectTable.top = false
@@ -250,13 +260,6 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.two[1]
             p1SelectTable.y = shipSelectPositions.two[2]
             p1SelectTable.position = 2
-        end
-        -- P1 pos5 => right
-        if key == "d" and p1SelectTable.position == 5 then
-            p1SelectTable.top = false
-            p1SelectTable.x = shipSelectPositions.six[1]
-            p1SelectTable.y = shipSelectPositions.six[2]
-            p1SelectTable.position = 6
         end
         -- P1 pos6 => left
         if key == "a" and p1SelectTable.position == 6 then
