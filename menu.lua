@@ -101,6 +101,9 @@ function drawMenu()
         love.graphics.draw(sprites.cyanShip, 670, 410, nil, 2)
         love.graphics.draw(sprites.orangeShip, 780, 410, nil, 2)
 
+        love.graphics.draw(sprites.p1Text, 75, 300)
+        love.graphics.draw(sprites.p2Text, 930, 300)
+
         if p1SelectTable.top == true then
             love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
         else
