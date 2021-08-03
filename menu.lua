@@ -22,11 +22,11 @@ p1SelectTable.x = shipSelectPositions.one[1]
 p1SelectTable.y = shipSelectPositions.one[2]
 p1SelectTable.top = true
 
--- p2SelectTable = {}
--- p2SelectTable.position = "top"
--- p2SelectTable.x = shipSelectPositions.two[1]
--- p2SelectTable.y = shipSelectPositions.two[2]
--- p2SelectTable.top = true
+p2SelectTable = {}
+p2SelectTable.position = 2
+p2SelectTable.x = shipSelectPositions.two[1]
+p2SelectTable.y = shipSelectPositions.two[2]
+p2SelectTable.top = true
 
 --[[
     MENU UPDATE
@@ -109,11 +109,11 @@ function drawMenu()
         else
             love.graphics.draw(sprites.p1SelectBottom, p1SelectTable.x, p1SelectTable.y)
         end
-        -- if p2SelectTable.top == true then
-        --     love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
-        -- else
-        --     love.graphics.draw(sprites.p2SelectBottom, p2SelectTable.x, p2SelectTable.y)
-        -- end
+        if p2SelectTable.top == true then
+            love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
+        else
+            love.graphics.draw(sprites.p2SelectBottom, p2SelectTable.x, p2SelectTable.y)
+        end
     end
 end
 
@@ -156,6 +156,12 @@ function menuMousepressed(x, y, button)
                 p1SelectTable.x = shipSelectPositions.one[1]
                 p1SelectTable.y = shipSelectPositions.one[2]
                 p1SelectTable.top = true
+
+                p2SelectTable.position = 2
+                p2SelectTable.x = shipSelectPositions.two[1]
+                p2SelectTable.y = shipSelectPositions.two[2]
+                p2SelectTable.top = true
+                
                 menuState = 3
             end
         end
@@ -177,6 +183,11 @@ end
 --]]
 function menuKeypressed(key)
     if menuState == 4 then
+
+        --[[
+            PLAYER 1 SHIP SELECT
+        --]]
+
         -- P1 pos2 => right
         if key == "d" and p1SelectTable.position == 2 then
             p1SelectTable.top = true
@@ -274,6 +285,109 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.three[1]
             p1SelectTable.y = shipSelectPositions.three[2]
             p1SelectTable.position = 3
+        end
+
+        --[[
+            PLAYER 2 SHIP SELECT
+        --]]
+
+        -- P2 pos2 => right
+        if key == "right" and p2SelectTable.position == 2 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.three[1]
+            p2SelectTable.y = shipSelectPositions.three[2]
+            p2SelectTable.position = 3
+        end
+        -- P2 pos1 => right
+        if key == "right" and p2SelectTable.position == 1 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.two[1]
+            p2SelectTable.y = shipSelectPositions.two[2]
+            p2SelectTable.position = 2
+        end
+        -- P2 pos1 => down
+        if key == "down" and p2SelectTable.position == 1 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.four[1]
+            p2SelectTable.y = shipSelectPositions.four[2]
+            p2SelectTable.position = 4
+        end
+        -- P2 pos2 => left
+        if key == "left" and p2SelectTable.position == 2 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.one[1]
+            p2SelectTable.y = shipSelectPositions.one[2]
+            p2SelectTable.position = 1
+        end
+        -- P2 pos2 => down
+        if key == "down" and p2SelectTable.position == 2 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.five[1]
+            p2SelectTable.y = shipSelectPositions.five[2]
+            p2SelectTable.position = 5
+        end
+        -- P2 pos3 => left
+        if key == "left" and p2SelectTable.position == 3 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.two[1]
+            p2SelectTable.y = shipSelectPositions.two[2]
+            p2SelectTable.position = 2
+        end
+        -- P2 pos3 => down
+        if key == "down" and p2SelectTable.position == 3 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.six[1]
+            p2SelectTable.y = shipSelectPositions.six[2]
+            p2SelectTable.position = 6
+        end
+        -- P2 pos4 => up
+        if key == "up" and p2SelectTable.position == 4 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.one[1]
+            p2SelectTable.y = shipSelectPositions.one[2]
+            p2SelectTable.position = 1
+        end
+        -- P2 pos5 => right
+        if key == "right" and p2SelectTable.position == 5 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.six[1]
+            p2SelectTable.y = shipSelectPositions.six[2]
+            p2SelectTable.position = 6
+        end
+        -- P2 pos4 => right
+        if key == "right" and p2SelectTable.position == 4 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.five[1]
+            p2SelectTable.y = shipSelectPositions.five[2]
+            p2SelectTable.position = 5
+        end
+        -- P2 pos5 => left
+        if key == "left" and p2SelectTable.position == 5 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.four[1]
+            p2SelectTable.y = shipSelectPositions.four[2]
+            p2SelectTable.position = 4
+        end
+        -- P1 pos5 => up
+        if key == "up" and p2SelectTable.position == 5 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.two[1]
+            p2SelectTable.y = shipSelectPositions.two[2]
+            p2SelectTable.position = 2
+        end
+        -- P2 pos6 => left
+        if key == "left" and p2SelectTable.position == 6 then
+            p2SelectTable.top = false
+            p2SelectTable.x = shipSelectPositions.five[1]
+            p2SelectTable.y = shipSelectPositions.five[2]
+            p2SelectTable.position = 5
+        end
+        -- P2 pos6 => up
+        if key == "up" and p2SelectTable.position == 6 then
+            p2SelectTable.top = true
+            p2SelectTable.x = shipSelectPositions.three[1]
+            p2SelectTable.y = shipSelectPositions.three[2]
+            p2SelectTable.position = 3
         end
     end
 end
