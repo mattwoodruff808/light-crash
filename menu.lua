@@ -1,9 +1,6 @@
 --[[
     MENU VARIABLES
 --]]
-gameState = "menu"
--- gameState = "game"
-
 menuState = 1
 
 pointer = love.mouse.getSystemCursor('hand')

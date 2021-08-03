@@ -25,6 +25,9 @@ function love.load()
     sprites.greenShip = love.graphics.newImage('sprites/green-ship30.png')
     sprites.yellowShip = love.graphics.newImage('sprites/yellow-ship30.png')
 
+    gameState = "menu"
+    -- gameState = "game"
+
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
     -- world:setQueryDebugDrawing(true)
