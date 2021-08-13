@@ -112,7 +112,7 @@ function drawMenu()
         love.graphics.setFont(selFont)
         love.graphics.printf("Ship Select/Movement", 150, 550, 250, "center")
         love.graphics.printf("Ship Select/Movement", 1005, 550, 250, "center")
-
+        
         if p1SelectTable.top == true then
             love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
         else
@@ -122,6 +122,15 @@ function drawMenu()
             love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
         else
             love.graphics.draw(sprites.p2SelectBottom, p2SelectTable.x, p2SelectTable.y)
+        end
+
+        love.graphics.draw(sprites.beginText, 575, 650)
+
+        -- Hovering over the Begin! button
+        if mx > 575 and mx < 820 and my > 650 and my < 705 then
+            love.mouse.setCursor(pointer)
+            love.graphics.draw(sprites.orangeShip, 555, 665, math.pi/2)
+            love.graphics.draw(sprites.orangeShip, 835, 695, math.pi*3/2)
         end
     end
 end
@@ -172,6 +181,13 @@ function menuMousepressed(x, y, button)
                 p2SelectTable.top = true
 
                 menuState = 3
+            end
+        end
+
+        -- Clicking on the Begin! button
+        if x > 575 and x < 820 and y > 650 and y < 705 then
+            if button == 1 then
+                gameState = "game"
             end
         end
     end

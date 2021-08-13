@@ -6,29 +6,28 @@
 local p1StartX = 52
 local p1StartY = 802
 
-if gameState == "game" then
-    playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})    playerOne:setFixedRotation(true)
-    -- playerOne.x = 515
-    -- playerOne.y = 415
-    playerOne.x = 65
-    playerOne.y = 815
-    playerOne.direction = "up"
-    -- playerOne.directionUpDown = 1
-    -- playerOne.directionLeftRight = 0
-    playerOne.rightOnce = false
-    playerOne.leftOnce = false
-    playerOne.upOnce = true
-    playerOne.downOnce = false
-    playerOne.radians = 0
-    -- playerOne.firstX = 515
-    -- playerOne.firstY = 415
-    playerOne.firstX = 65
-    playerOne.firstY = 815
-    playerOne.lastX = 0
-    playerOne.lastY = 0
-    playerOne.lines = {}
-    playerOne.lineColliders = {}
-end
+playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})    playerOne:setFixedRotation(true)
+-- playerOne.x = 515
+-- playerOne.y = 415
+playerOne.x = 65
+playerOne.y = 815
+playerOne.direction = "up"
+-- playerOne.directionUpDown = 1
+-- playerOne.directionLeftRight = 0
+playerOne.rightOnce = false
+playerOne.leftOnce = false
+playerOne.upOnce = true
+playerOne.downOnce = false
+playerOne.radians = 0
+-- playerOne.firstX = 515
+-- playerOne.firstY = 415
+playerOne.firstX = 65
+playerOne.firstY = 815
+playerOne.lastX = 0
+playerOne.lastY = 0
+playerOne.lines = {}
+playerOne.lineColliders = {}
+
 
 --[[
     PLAYER ONE UPDATE

@@ -22,6 +22,7 @@ function love.load()
     sprites.p2Text = love.graphics.newImage('sprites/p2-text.png')
     sprites.p1Keys = love.graphics.newImage('sprites/p1-keys.png')
     sprites.p2Keys = love.graphics.newImage('sprites/p2-keys.png')
+    sprites.beginText = love.graphics.newImage('sprites/begin-text.png')
     sprites.background = love.graphics.newImage('sprites/background-1400-900.png')
     sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
     sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
@@ -31,7 +32,6 @@ function love.load()
     sprites.yellowShip = love.graphics.newImage('sprites/yellow-ship30.png')
 
     gameState = "menu"
-    -- gameState = "game"
 
     wf = require 'libraries/windfield/windfield'
     world = wf.newWorld(0, 0, false)
