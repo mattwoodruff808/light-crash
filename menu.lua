@@ -18,12 +18,14 @@ p1SelectTable.position = 1
 p1SelectTable.x = shipSelectPositions.one[1]
 p1SelectTable.y = shipSelectPositions.one[2]
 p1SelectTable.top = true
+p1SelectTable.colorChosen = "red"
 
 p2SelectTable = {}
 p2SelectTable.position = 2
 p2SelectTable.x = shipSelectPositions.two[1]
 p2SelectTable.y = shipSelectPositions.two[2]
 p2SelectTable.top = true
+p2SelectTable.colorChosen = "blue"
 
 --[[
     MENU UPDATE
@@ -75,9 +77,9 @@ function drawMenu()
     end
 
     if menuState == 2 then
-        love.graphics.setFont(lcFont)
-        love.graphics.printf("Credits", 550, 400, 200, 'center')
-        love.graphics.printf("Game, Art, Music created and designed by Matt Woodruff", 305, 500, 700, 'center')
+        love.graphics.setFont(credFont)
+        love.graphics.printf("Credits", 600, 400, 200, 'center')
+        love.graphics.printf("Game, Art, Music created and designed by Matt Woodruff", 355, 500, 700, 'center')
     end
 
     if menuState == 3 then
@@ -103,6 +105,13 @@ function drawMenu()
 
         love.graphics.draw(sprites.p1Text, 75, 300)
         love.graphics.draw(sprites.p2Text, 930, 300)
+
+        love.graphics.draw(sprites.p1Keys, 175, 400)
+        love.graphics.draw(sprites.p2Keys, 1030, 400)
+
+        love.graphics.setFont(selFont)
+        love.graphics.printf("Ship Select/Movement", 150, 550, 250, "center")
+        love.graphics.printf("Ship Select/Movement", 1005, 550, 250, "center")
 
         if p1SelectTable.top == true then
             love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
@@ -194,6 +203,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.three[1]
             p1SelectTable.y = shipSelectPositions.three[2]
             p1SelectTable.position = 3
+            p1SelectTable.colorChosen = "green"
         end
         -- P1 pos1 => right
         if key == "d" and p1SelectTable.position == 1 and p2SelectTable.position ~= 2 then
@@ -201,6 +211,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.two[1]
             p1SelectTable.y = shipSelectPositions.two[2]
             p1SelectTable.position = 2
+            p1SelectTable.colorChosen = "blue"
         end
         -- P1 pos1 => down
         if key == "s" and p1SelectTable.position == 1 and p2SelectTable.position ~= 4 then
@@ -208,6 +219,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.four[1]
             p1SelectTable.y = shipSelectPositions.four[2]
             p1SelectTable.position = 4
+            p1SelectTable.colorChosen = "yellow"
         end
         -- P1 pos2 => left
         if key == "a" and p1SelectTable.position == 2 and p2SelectTable.position ~= 1 then
@@ -215,6 +227,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.one[1]
             p1SelectTable.y = shipSelectPositions.one[2]
             p1SelectTable.position = 1
+            p1SelectTable.colorChosen = "red"
         end
         -- P1 pos2 => down
         if key == "s" and p1SelectTable.position == 2 and p2SelectTable.position ~= 5 then
@@ -222,6 +235,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.five[1]
             p1SelectTable.y = shipSelectPositions.five[2]
             p1SelectTable.position = 5
+            p1SelectTable.colorChosen = "cyan"
         end
         -- P1 pos3 => left
         if key == "a" and p1SelectTable.position == 3 and p2SelectTable.position ~= 2 then
@@ -229,6 +243,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.two[1]
             p1SelectTable.y = shipSelectPositions.two[2]
             p1SelectTable.position = 2
+            p1SelectTable.colorChosen = "blue"
         end
         -- P1 pos3 => down
         if key == "s" and p1SelectTable.position == 3 and p2SelectTable.position ~= 6 then
@@ -236,6 +251,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.six[1]
             p1SelectTable.y = shipSelectPositions.six[2]
             p1SelectTable.position = 6
+            p1SelectTable.colorChosen = "orange"
         end
         -- P1 pos4 => up
         if key == "w" and p1SelectTable.position == 4 and p2SelectTable.position ~= 1 then
@@ -243,6 +259,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.one[1]
             p1SelectTable.y = shipSelectPositions.one[2]
             p1SelectTable.position = 1
+            p1SelectTable.colorChosen = "red"
         end
         -- P1 pos5 => right
         if key == "d" and p1SelectTable.position == 5 and p2SelectTable.position ~= 6 then
@@ -250,6 +267,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.six[1]
             p1SelectTable.y = shipSelectPositions.six[2]
             p1SelectTable.position = 6
+            p1SelectTable.colorChosen = "orange"
         end
         -- P1 pos4 => right
         if key == "d" and p1SelectTable.position == 4 and p2SelectTable.position ~= 5 then
@@ -257,6 +275,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.five[1]
             p1SelectTable.y = shipSelectPositions.five[2]
             p1SelectTable.position = 5
+            p1SelectTable.colorChosen = "cyan"
         end
         -- P1 pos5 => left
         if key == "a" and p1SelectTable.position == 5 and p2SelectTable.position ~= 4 then
@@ -264,6 +283,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.four[1]
             p1SelectTable.y = shipSelectPositions.four[2]
             p1SelectTable.position = 4
+            p1SelectTable.colorChosen = "yellow"
         end
         -- P1 pos5 => up
         if key == "w" and p1SelectTable.position == 5 and p2SelectTable.position ~= 2 then
@@ -271,6 +291,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.two[1]
             p1SelectTable.y = shipSelectPositions.two[2]
             p1SelectTable.position = 2
+            p1SelectTable.colorChosen = "blue"
         end
         -- P1 pos6 => left
         if key == "a" and p1SelectTable.position == 6 and p2SelectTable.position ~= 5 then
@@ -278,6 +299,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.five[1]
             p1SelectTable.y = shipSelectPositions.five[2]
             p1SelectTable.position = 5
+            p1SelectTable.colorChosen = "cyan"
         end
         -- P1 pos6 => up
         if key == "w" and p1SelectTable.position == 6 and p2SelectTable.position ~= 3 then
@@ -285,6 +307,7 @@ function menuKeypressed(key)
             p1SelectTable.x = shipSelectPositions.three[1]
             p1SelectTable.y = shipSelectPositions.three[2]
             p1SelectTable.position = 3
+            p1SelectTable.colorChosen = "green"
         end
 
         --[[
@@ -297,6 +320,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.three[1]
             p2SelectTable.y = shipSelectPositions.three[2]
             p2SelectTable.position = 3
+            p2SelectTable.colorChosen = "green"
         end
         -- P2 pos1 => right
         if key == "right" and p2SelectTable.position == 1 and p1SelectTable.position ~= 2 then
@@ -304,6 +328,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.two[1]
             p2SelectTable.y = shipSelectPositions.two[2]
             p2SelectTable.position = 2
+            p2SelectTable.colorChosen = "blue"
         end
         -- P2 pos1 => down
         if key == "down" and p2SelectTable.position == 1 and p1SelectTable.position ~= 4 then
@@ -311,6 +336,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.four[1]
             p2SelectTable.y = shipSelectPositions.four[2]
             p2SelectTable.position = 4
+            p2SelectTable.colorChosen = "yellow"
         end
         -- P2 pos2 => left
         if key == "left" and p2SelectTable.position == 2 and p1SelectTable.position ~= 1 then
@@ -318,6 +344,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.one[1]
             p2SelectTable.y = shipSelectPositions.one[2]
             p2SelectTable.position = 1
+            p2SelectTable.colorChosen = "red"
         end
         -- P2 pos2 => down
         if key == "down" and p2SelectTable.position == 2 and p1SelectTable.position ~= 5 then
@@ -325,6 +352,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.five[1]
             p2SelectTable.y = shipSelectPositions.five[2]
             p2SelectTable.position = 5
+            p2SelectTable.colorChosen = "cyan"
         end
         -- P2 pos3 => left
         if key == "left" and p2SelectTable.position == 3 and p1SelectTable.position ~= 2 then
@@ -332,6 +360,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.two[1]
             p2SelectTable.y = shipSelectPositions.two[2]
             p2SelectTable.position = 2
+            p2SelectTable.colorChosen = "blue"
         end
         -- P2 pos3 => down
         if key == "down" and p2SelectTable.position == 3 and p1SelectTable.position ~= 6 then
@@ -339,6 +368,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.six[1]
             p2SelectTable.y = shipSelectPositions.six[2]
             p2SelectTable.position = 6
+            p2SelectTable.colorChosen = "orange"
         end
         -- P2 pos4 => up
         if key == "up" and p2SelectTable.position == 4 and p1SelectTable.position ~= 1 then
@@ -346,6 +376,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.one[1]
             p2SelectTable.y = shipSelectPositions.one[2]
             p2SelectTable.position = 1
+            p2SelectTable.colorChosen = "red"
         end
         -- P2 pos5 => right
         if key == "right" and p2SelectTable.position == 5 and p1SelectTable.position ~= 6 then
@@ -353,6 +384,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.six[1]
             p2SelectTable.y = shipSelectPositions.six[2]
             p2SelectTable.position = 6
+            p2SelectTable.colorChosen = "orange"
         end
         -- P2 pos4 => right
         if key == "right" and p2SelectTable.position == 4 and p1SelectTable.position ~= 5 then
@@ -360,6 +392,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.five[1]
             p2SelectTable.y = shipSelectPositions.five[2]
             p2SelectTable.position = 5
+            p2SelectTable.colorChosen = "cyan"
         end
         -- P2 pos5 => left
         if key == "left" and p2SelectTable.position == 5 and p1SelectTable.position ~= 4 then
@@ -367,6 +400,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.four[1]
             p2SelectTable.y = shipSelectPositions.four[2]
             p2SelectTable.position = 4
+            p2SelectTable.colorChosen = "yellow"
         end
         -- P1 pos5 => up
         if key == "up" and p2SelectTable.position == 5 and p1SelectTable.position ~= 2 then
@@ -374,6 +408,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.two[1]
             p2SelectTable.y = shipSelectPositions.two[2]
             p2SelectTable.position = 2
+            p2SelectTable.colorChosen = "blue"
         end
         -- P2 pos6 => left
         if key == "left" and p2SelectTable.position == 6 and p1SelectTable.position ~= 5 then
@@ -381,6 +416,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.five[1]
             p2SelectTable.y = shipSelectPositions.five[2]
             p2SelectTable.position = 5
+            p2SelectTable.colorChosen = "cyan"
         end
         -- P2 pos6 => up
         if key == "up" and p2SelectTable.position == 6 and p1SelectTable.position ~= 3 then
@@ -388,6 +424,7 @@ function menuKeypressed(key)
             p2SelectTable.x = shipSelectPositions.three[1]
             p2SelectTable.y = shipSelectPositions.three[2]
             p2SelectTable.position = 3
+            p2SelectTable.colorChosen = "green"
         end
     end
 end

@@ -4,7 +4,8 @@
 function love.load()
     love.window.setMode(1400, 900)
 
-    lcFont = love.graphics.newFont('fonts/BalooChettan2-Regular.ttf', 40)
+    credFont = love.graphics.newFont('fonts/BalooChettan2-Regular.ttf', 40)
+    selFont = love.graphics.newFont('fonts/BalooChettan2-Regular.ttf', 25)
 
     sprites = {}
     sprites.menuLogo = love.graphics.newImage('sprites/light-crash-logo.png')
@@ -19,6 +20,8 @@ function love.load()
     sprites.p2SelectBottom = love.graphics.newImage('sprites/p2-select-bottom.png')
     sprites.p1Text = love.graphics.newImage('sprites/p1-text.png')
     sprites.p2Text = love.graphics.newImage('sprites/p2-text.png')
+    sprites.p1Keys = love.graphics.newImage('sprites/p1-keys.png')
+    sprites.p2Keys = love.graphics.newImage('sprites/p2-keys.png')
     sprites.background = love.graphics.newImage('sprites/background-1400-900.png')
     sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
     sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
