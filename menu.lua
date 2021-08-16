@@ -188,6 +188,7 @@ function menuMousepressed(x, y, button)
         if x > 575 and x < 820 and y > 650 and y < 705 then
             if button == 1 then
                 gameState = "game"
+                startTimer = 3
             end
         end
     end

@@ -55,6 +55,8 @@ function love.load()
     playerSizeY = 25
     playerSpeed = 200
 
+    startTimer = 0
+
     require('menu')
     require('playerOne')
     require('playerTwo')
@@ -67,8 +69,15 @@ function love.update(dt)
     world:update(dt)
 
     if gameState == "game" then
-        playerOneUpdate(dt)
-        playerTwoUpdate(dt)
+        if startTimer > 0 then
+            startTimer = startTimer - dt
+        end
+            
+        if startTimer <= 0 then  
+            startTimer = 0
+            playerOneUpdate(dt)
+            playerTwoUpdate(dt)
+        end
     end
 end
 
@@ -85,6 +94,11 @@ function love.draw()
     if gameState == "game" then
         love.graphics.setColor(1, 1, 1)
         love.graphics.draw(sprites.background, 0, 0)
+
+        if startTimer > 0 then
+            love.graphics.setFont(credFont)
+            love.graphics.print(math.ceil(startTimer), 700, 450)
+        end
 
         drawPlayerOne()
         drawPlayerTwo()
