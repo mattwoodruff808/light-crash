@@ -71,7 +71,20 @@ end
     PLAYER ONE DRAW
 --]]
 function drawPlayerOne()
-    love.graphics.setColor(1, 0.6, 0.6)
+    if p1SelectTable.colorChosen == "red" then
+        love.graphics.setColor(1, 0.8, 0.8)
+    elseif p1SelectTable.colorChosen == "blue" then
+        love.graphics.setColor(0.8, 0.8, 1)
+    elseif p1SelectTable.colorChosen == "green" then
+        love.graphics.setColor(0.8, 1, 0.8)
+    elseif p1SelectTable.colorChosen == "yellow" then
+        love.graphics.setColor(1, 1, 0.8)
+    elseif p1SelectTable.colorChosen == "cyan" then
+        love.graphics.setColor(0.8, 1, 1)
+    elseif p1SelectTable.colorChosen == "orange" then
+        love.graphics.setColor(1, 0.8, 0.6)
+    end
+
     love.graphics.setLineWidth(8)
 
     if playerOne.body then
@@ -113,7 +126,20 @@ function drawPlayerOne()
     
         love.graphics.setColor(1, 1, 1)
         love.graphics.setLineWidth(1)
-        love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+
+        if p1SelectTable.colorChosen == "red" then
+            love.graphics.draw(sprites.redShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+        elseif p1SelectTable.colorChosen == "blue" then
+            love.graphics.draw(sprites.blueShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+        elseif p1SelectTable.colorChosen == "green" then
+            love.graphics.draw(sprites.greenShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+        elseif p1SelectTable.colorChosen == "yellow" then
+            love.graphics.draw(sprites.yellowShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+        elseif p1SelectTable.colorChosen == "cyan" then
+            love.graphics.draw(sprites.cyanShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+        elseif p1SelectTable.colorChosen == "orange" then
+            love.graphics.draw(sprites.orangeShip, playerOne.x, playerOne.y, playerOne.radians, nil, nil, 15, 15)
+        end
     end
 
     -- love.graphics.print(#playerOne.lineColliders, 30, 30)
