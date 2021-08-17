@@ -249,4 +249,6 @@ function destroyPlayerOne()
     end
 
     playerOne:destroy()
+    winner = "Player Two"
+    playerSpeed = 0.01
 end

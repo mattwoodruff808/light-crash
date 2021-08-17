@@ -24,6 +24,8 @@ function love.load()
     sprites.p2Keys = love.graphics.newImage('sprites/p2-keys.png')
     sprites.beginText = love.graphics.newImage('sprites/begin-text.png')
     sprites.background = love.graphics.newImage('sprites/background-1400-900.png')
+    sprites.p1Wins = love.graphics.newImage('sprites/p1-wins.png')
+    sprites.p2Wins = love.graphics.newImage('sprites/p2-wins.png')
     sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
     sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
     sprites.orangeShip = love.graphics.newImage('sprites/orange-ship30.png')
@@ -56,6 +58,7 @@ function love.load()
     playerSpeed = 200
 
     startTimer = 0
+    winner = "None"
 
     require('menu')
     require('playerOne')
@@ -102,6 +105,18 @@ function love.draw()
 
         drawPlayerOne()
         drawPlayerTwo()
+
+        if winner == "Player One" then
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.rectangle("fill", 200, 200, 1000, 500)
+            love.graphics.draw(sprites.p1Wins, 400, 300)
+        end
+
+        if winner == "Player Two" then
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.rectangle("fill", 200, 200, 1000, 500)
+            love.graphics.draw(sprites.p2Wins, 400, 300)
+        end
     end
 end
 

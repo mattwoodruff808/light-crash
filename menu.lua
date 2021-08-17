@@ -189,6 +189,7 @@ function menuMousepressed(x, y, button)
             if button == 1 then
                 gameState = "game"
                 startTimer = 3
+                love.mouse.setCursor()
             end
         end
     end
