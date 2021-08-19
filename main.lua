@@ -63,6 +63,7 @@ function love.load()
     require('menu')
     require('playerOne')
     require('playerTwo')
+    require('endgameMenu')
 end
 
 --[[
@@ -106,17 +107,7 @@ function love.draw()
         drawPlayerOne()
         drawPlayerTwo()
 
-        if winner == "Player One" then
-            love.graphics.setColor(1, 1, 1)
-            love.graphics.rectangle("fill", 200, 200, 1000, 500)
-            love.graphics.draw(sprites.p1Wins, 400, 300)
-        end
-
-        if winner == "Player Two" then
-            love.graphics.setColor(1, 1, 1)
-            love.graphics.rectangle("fill", 200, 200, 1000, 500)
-            love.graphics.draw(sprites.p2Wins, 400, 300)
-        end
+        drawEndgame()
     end
 end
 
