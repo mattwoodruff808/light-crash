@@ -125,6 +125,9 @@ function love.keypressed(key)
     end
 end
 
+--[[
+    MOUSEPRESSED FUNCTION
+--]]
 function love.mousepressed(x, y, button)
     if gameState == "menu" then
         menuMousepressed(x, y, button)
