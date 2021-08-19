@@ -7,32 +7,6 @@ function love.load()
     credFont = love.graphics.newFont('fonts/BalooChettan2-Regular.ttf', 40)
     selFont = love.graphics.newFont('fonts/BalooChettan2-Regular.ttf', 25)
 
-    sprites = {}
-    sprites.menuLogo = love.graphics.newImage('sprites/light-crash-logo.png')
-    sprites.playText = love.graphics.newImage('sprites/play-text.png')
-    sprites.creditsText = love.graphics.newImage('sprites/credits-text.png')
-    sprites.backBtn = love.graphics.newImage('sprites/back-button.png')
-    sprites.classic = love.graphics.newImage('sprites/classic-mode.png')
-    sprites.chooseShip = love.graphics.newImage('sprites/choose-ship.png')
-    sprites.p1Select = love.graphics.newImage('sprites/p1-select.png')
-    sprites.p1SelectBottom = love.graphics.newImage('sprites/p1-select-bottom.png')
-    sprites.p2Select = love.graphics.newImage('sprites/p2-select.png')
-    sprites.p2SelectBottom = love.graphics.newImage('sprites/p2-select-bottom.png')
-    sprites.p1Text = love.graphics.newImage('sprites/p1-text.png')
-    sprites.p2Text = love.graphics.newImage('sprites/p2-text.png')
-    sprites.p1Keys = love.graphics.newImage('sprites/p1-keys.png')
-    sprites.p2Keys = love.graphics.newImage('sprites/p2-keys.png')
-    sprites.beginText = love.graphics.newImage('sprites/begin-text.png')
-    sprites.background = love.graphics.newImage('sprites/background-1400-900.png')
-    sprites.p1Wins = love.graphics.newImage('sprites/p1-wins.png')
-    sprites.p2Wins = love.graphics.newImage('sprites/p2-wins.png')
-    sprites.redShip = love.graphics.newImage('sprites/red-ship30.png')
-    sprites.blueShip = love.graphics.newImage('sprites/blue-ship30.png')
-    sprites.orangeShip = love.graphics.newImage('sprites/orange-ship30.png')
-    sprites.cyanShip = love.graphics.newImage('sprites/cyan-ship30.png')
-    sprites.greenShip = love.graphics.newImage('sprites/green-ship30.png')
-    sprites.yellowShip = love.graphics.newImage('sprites/yellow-ship30.png')
-
     gameState = "menu"
 
     wf = require 'libraries/windfield/windfield'
@@ -60,6 +34,7 @@ function love.load()
     startTimer = 0
     winner = "None"
 
+    require('sprites')
     require('menu')
     require('playerOne')
     require('playerTwo')
