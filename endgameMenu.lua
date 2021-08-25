@@ -25,7 +25,7 @@ function drawEndgame()
     end
 
     if winner == "Player Two" then
-        love.graphics.setColor(1, 1, 1)
+        love.graphics.setColor(0.63, 0.63, 0.63)
         love.graphics.rectangle("fill", 200, 200, 1000, 500)
         love.graphics.draw(sprites.p2Wins, 400, 300)
         love.graphics.setColor(0, 0, 0)
@@ -87,7 +87,8 @@ function endgameMenuMousepressed(x, y, button)
             -- Player One Reset
             local p1StartX = 52
             local p1StartY = 802
-            playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})    playerOne:setFixedRotation(true)
+            playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})
+            playerOne:setFixedRotation(true)
             playerOne.x = 65
             playerOne.y = 815
             playerOne.direction = "up"

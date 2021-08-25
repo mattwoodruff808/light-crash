@@ -4,7 +4,8 @@
 local p1StartX = 52
 local p1StartY = 802
 
-playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})    playerOne:setFixedRotation(true)
+playerOne = world:newRectangleCollider(p1StartX, p1StartY, playerSizeX, playerSizeY, {collision_class = 'PlayerOne'})
+playerOne:setFixedRotation(true)
 playerOne.x = 65
 playerOne.y = 815
 playerOne.direction = "up"
