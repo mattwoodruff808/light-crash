@@ -107,6 +107,10 @@ function love.mousepressed(x, y, button)
     if gameState == "menu" then
         menuMousepressed(x, y, button)
     end
+
+    if (gameState == "game" and winner == "Player One") or (gameState == "game" and winner == "Player Two") then
+        endgameMenuMousepressed(x, y, button)
+    end
 end
 
 --[[
