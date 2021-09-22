@@ -16,6 +16,7 @@ function love.load()
     world:addCollisionClass('Border')
     world:addCollisionClass('PlayerOne')
     world:addCollisionClass('PlayerTwo')
+    world:addCollisionClass('Computer')
     world:addCollisionClass('Trail')
 
     topBorder = world:newRectangleCollider(0, 0, 1400, 20, {collision_class = 'Border'})
@@ -33,11 +34,13 @@ function love.load()
 
     startTimer = 0
     winner = "None"
+    computer = false
 
     require('sprites')
     require('menu')
     require('playerOne')
     require('playerTwo')
+    require('computer')
     require('endgameMenu')
 end
 
@@ -55,7 +58,12 @@ function love.update(dt)
         if startTimer <= 0 then  
             startTimer = 0
             playerOneUpdate(dt)
-            playerTwoUpdate(dt)
+
+            if computer == true then
+                computerUpdate(dt)
+            else
+                playerTwoUpdate(dt)
+            end
         end
     end
 end
@@ -80,7 +88,12 @@ function love.draw()
         end
 
         drawPlayerOne()
-        drawPlayerTwo()
+
+        if computer == true then
+            drawComputer()
+        else
+            drawPlayerTwo()
+        end
 
         drawEndgame()
     end

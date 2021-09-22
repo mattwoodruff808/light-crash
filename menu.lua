@@ -96,6 +96,7 @@ function drawMenu()
     if menuState == 4 then
         love.graphics.draw(sprites.chooseShip, 220, 50)
 
+        -- Ship Options Draw
         love.graphics.draw(sprites.redShip, 560, 300, nil, 2)
         love.graphics.draw(sprites.blueShip, 670, 300, nil, 2)
         love.graphics.draw(sprites.greenShip, 780, 300, nil, 2)
@@ -103,25 +104,27 @@ function drawMenu()
         love.graphics.draw(sprites.cyanShip, 670, 410, nil, 2)
         love.graphics.draw(sprites.orangeShip, 780, 410, nil, 2)
 
+        -- Player One Select Draw
         love.graphics.draw(sprites.p1Text, 75, 300)
-        love.graphics.draw(sprites.p2Text, 930, 300)
-
         love.graphics.draw(sprites.p1Keys, 175, 400)
-        love.graphics.draw(sprites.p2Keys, 1030, 400)
-
         love.graphics.setFont(selFont)
         love.graphics.printf("Ship Select/Movement", 150, 550, 250, "center")
-        love.graphics.printf("Ship Select/Movement", 1005, 550, 250, "center")
-        
         if p1SelectTable.top == true then
             love.graphics.draw(sprites.p1Select, p1SelectTable.x, p1SelectTable.y)
         else
             love.graphics.draw(sprites.p1SelectBottom, p1SelectTable.x, p1SelectTable.y)
         end
-        if p2SelectTable.top == true then
-            love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
-        else
-            love.graphics.draw(sprites.p2SelectBottom, p2SelectTable.x, p2SelectTable.y)
+        
+        -- Player Two Select Draw
+        if computer == false then
+            love.graphics.draw(sprites.p2Text, 930, 300)
+            love.graphics.draw(sprites.p2Keys, 1030, 400)
+            love.graphics.printf("Ship Select/Movement", 1005, 550, 250, "center")
+            if p2SelectTable.top == true then
+                love.graphics.draw(sprites.p2Select, p2SelectTable.x, p2SelectTable.y)
+            else
+                love.graphics.draw(sprites.p2SelectBottom, p2SelectTable.x, p2SelectTable.y)
+            end
         end
 
         love.graphics.draw(sprites.beginText, 575, 650)
@@ -131,6 +134,23 @@ function drawMenu()
             love.mouse.setCursor(pointer)
             love.graphics.draw(sprites.orangeShip, 555, 665, math.pi/2)
             love.graphics.draw(sprites.orangeShip, 835, 695, math.pi*3/2)
+        end
+
+        -- Computer Select Draw
+        love.graphics.rectangle("line", 930, 800, 35, 35)
+        love.graphics.printf("Computer Opponent", 980, 800, 250, "left")
+
+        -- Hovering over the Computer checkbox
+        if mx > 930 and mx < 965 and my > 800 and my < 835 then
+            love.mouse.setCursor(pointer)
+        end
+
+        -- Selected Computer Draw
+        if computer == true then
+            love.graphics.draw(sprites.computerText, 950, 300)
+            love.graphics.printf("Good Luck!", 1005, 400, 250, "center")
+            love.graphics.printf("X", 833, 798, 230, "center")
+            p2SelectTable.position = 0
         end
     end
 end
@@ -190,6 +210,29 @@ function menuMousepressed(x, y, button)
                 gameState = "game"
                 startTimer = 3
                 love.mouse.setCursor()
+
+                if computer == true then
+                    local j = #playerTwo.lineColliders
+                    while j > -1 do
+                    if playerTwo.lineColliders[j] ~= nil then
+                        playerTwo.lineColliders[j]:destroy()
+                    end
+                    table.remove(playerTwo.lineColliders, j)
+                    j = j - 1
+                    end
+                    playerTwo:destroy()
+                end
+            end
+        end
+
+        -- Clicking on the Computer checkbox
+        if x > 930 and x < 965 and y > 800 and y < 835 then
+            if button == 1 then
+                if computer == false then
+                    computer = true
+                else
+                    computer = false
+                end
             end
         end
     end
@@ -331,118 +374,119 @@ function menuKeypressed(key)
         --[[
             PLAYER 2 SHIP SELECT
         --]]
-
-        -- P2 pos2 => right
-        if key == "right" and p2SelectTable.position == 2 and p1SelectTable.position ~= 3 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.three[1]
-            p2SelectTable.y = shipSelectPositions.three[2]
-            p2SelectTable.position = 3
-            p2SelectTable.colorChosen = "green"
-        end
-        -- P2 pos1 => right
-        if key == "right" and p2SelectTable.position == 1 and p1SelectTable.position ~= 2 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.two[1]
-            p2SelectTable.y = shipSelectPositions.two[2]
-            p2SelectTable.position = 2
-            p2SelectTable.colorChosen = "blue"
-        end
-        -- P2 pos1 => down
-        if key == "down" and p2SelectTable.position == 1 and p1SelectTable.position ~= 4 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.four[1]
-            p2SelectTable.y = shipSelectPositions.four[2]
-            p2SelectTable.position = 4
-            p2SelectTable.colorChosen = "yellow"
-        end
-        -- P2 pos2 => left
-        if key == "left" and p2SelectTable.position == 2 and p1SelectTable.position ~= 1 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.one[1]
-            p2SelectTable.y = shipSelectPositions.one[2]
-            p2SelectTable.position = 1
-            p2SelectTable.colorChosen = "red"
-        end
-        -- P2 pos2 => down
-        if key == "down" and p2SelectTable.position == 2 and p1SelectTable.position ~= 5 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.five[1]
-            p2SelectTable.y = shipSelectPositions.five[2]
-            p2SelectTable.position = 5
-            p2SelectTable.colorChosen = "cyan"
-        end
-        -- P2 pos3 => left
-        if key == "left" and p2SelectTable.position == 3 and p1SelectTable.position ~= 2 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.two[1]
-            p2SelectTable.y = shipSelectPositions.two[2]
-            p2SelectTable.position = 2
-            p2SelectTable.colorChosen = "blue"
-        end
-        -- P2 pos3 => down
-        if key == "down" and p2SelectTable.position == 3 and p1SelectTable.position ~= 6 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.six[1]
-            p2SelectTable.y = shipSelectPositions.six[2]
-            p2SelectTable.position = 6
-            p2SelectTable.colorChosen = "orange"
-        end
-        -- P2 pos4 => up
-        if key == "up" and p2SelectTable.position == 4 and p1SelectTable.position ~= 1 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.one[1]
-            p2SelectTable.y = shipSelectPositions.one[2]
-            p2SelectTable.position = 1
-            p2SelectTable.colorChosen = "red"
-        end
-        -- P2 pos5 => right
-        if key == "right" and p2SelectTable.position == 5 and p1SelectTable.position ~= 6 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.six[1]
-            p2SelectTable.y = shipSelectPositions.six[2]
-            p2SelectTable.position = 6
-            p2SelectTable.colorChosen = "orange"
-        end
-        -- P2 pos4 => right
-        if key == "right" and p2SelectTable.position == 4 and p1SelectTable.position ~= 5 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.five[1]
-            p2SelectTable.y = shipSelectPositions.five[2]
-            p2SelectTable.position = 5
-            p2SelectTable.colorChosen = "cyan"
-        end
-        -- P2 pos5 => left
-        if key == "left" and p2SelectTable.position == 5 and p1SelectTable.position ~= 4 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.four[1]
-            p2SelectTable.y = shipSelectPositions.four[2]
-            p2SelectTable.position = 4
-            p2SelectTable.colorChosen = "yellow"
-        end
-        -- P1 pos5 => up
-        if key == "up" and p2SelectTable.position == 5 and p1SelectTable.position ~= 2 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.two[1]
-            p2SelectTable.y = shipSelectPositions.two[2]
-            p2SelectTable.position = 2
-            p2SelectTable.colorChosen = "blue"
-        end
-        -- P2 pos6 => left
-        if key == "left" and p2SelectTable.position == 6 and p1SelectTable.position ~= 5 then
-            p2SelectTable.top = false
-            p2SelectTable.x = shipSelectPositions.five[1]
-            p2SelectTable.y = shipSelectPositions.five[2]
-            p2SelectTable.position = 5
-            p2SelectTable.colorChosen = "cyan"
-        end
-        -- P2 pos6 => up
-        if key == "up" and p2SelectTable.position == 6 and p1SelectTable.position ~= 3 then
-            p2SelectTable.top = true
-            p2SelectTable.x = shipSelectPositions.three[1]
-            p2SelectTable.y = shipSelectPositions.three[2]
-            p2SelectTable.position = 3
-            p2SelectTable.colorChosen = "green"
+        if computer == false then
+            -- P2 pos2 => right
+            if key == "right" and p2SelectTable.position == 2 and p1SelectTable.position ~= 3 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.three[1]
+                p2SelectTable.y = shipSelectPositions.three[2]
+                p2SelectTable.position = 3
+                p2SelectTable.colorChosen = "green"
+            end
+            -- P2 pos1 => right
+            if key == "right" and p2SelectTable.position == 1 and p1SelectTable.position ~= 2 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.two[1]
+                p2SelectTable.y = shipSelectPositions.two[2]
+                p2SelectTable.position = 2
+                p2SelectTable.colorChosen = "blue"
+            end
+            -- P2 pos1 => down
+            if key == "down" and p2SelectTable.position == 1 and p1SelectTable.position ~= 4 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.four[1]
+                p2SelectTable.y = shipSelectPositions.four[2]
+                p2SelectTable.position = 4
+                p2SelectTable.colorChosen = "yellow"
+            end
+            -- P2 pos2 => left
+            if key == "left" and p2SelectTable.position == 2 and p1SelectTable.position ~= 1 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.one[1]
+                p2SelectTable.y = shipSelectPositions.one[2]
+                p2SelectTable.position = 1
+                p2SelectTable.colorChosen = "red"
+            end
+            -- P2 pos2 => down
+            if key == "down" and p2SelectTable.position == 2 and p1SelectTable.position ~= 5 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.five[1]
+                p2SelectTable.y = shipSelectPositions.five[2]
+                p2SelectTable.position = 5
+                p2SelectTable.colorChosen = "cyan"
+            end
+            -- P2 pos3 => left
+            if key == "left" and p2SelectTable.position == 3 and p1SelectTable.position ~= 2 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.two[1]
+                p2SelectTable.y = shipSelectPositions.two[2]
+                p2SelectTable.position = 2
+                p2SelectTable.colorChosen = "blue"
+            end
+            -- P2 pos3 => down
+            if key == "down" and p2SelectTable.position == 3 and p1SelectTable.position ~= 6 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.six[1]
+                p2SelectTable.y = shipSelectPositions.six[2]
+                p2SelectTable.position = 6
+                p2SelectTable.colorChosen = "orange"
+            end
+            -- P2 pos4 => up
+            if key == "up" and p2SelectTable.position == 4 and p1SelectTable.position ~= 1 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.one[1]
+                p2SelectTable.y = shipSelectPositions.one[2]
+                p2SelectTable.position = 1
+                p2SelectTable.colorChosen = "red"
+            end
+            -- P2 pos5 => right
+            if key == "right" and p2SelectTable.position == 5 and p1SelectTable.position ~= 6 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.six[1]
+                p2SelectTable.y = shipSelectPositions.six[2]
+                p2SelectTable.position = 6
+                p2SelectTable.colorChosen = "orange"
+            end
+            -- P2 pos4 => right
+            if key == "right" and p2SelectTable.position == 4 and p1SelectTable.position ~= 5 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.five[1]
+                p2SelectTable.y = shipSelectPositions.five[2]
+                p2SelectTable.position = 5
+                p2SelectTable.colorChosen = "cyan"
+            end
+            -- P2 pos5 => left
+            if key == "left" and p2SelectTable.position == 5 and p1SelectTable.position ~= 4 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.four[1]
+                p2SelectTable.y = shipSelectPositions.four[2]
+                p2SelectTable.position = 4
+                p2SelectTable.colorChosen = "yellow"
+            end
+            -- P1 pos5 => up
+            if key == "up" and p2SelectTable.position == 5 and p1SelectTable.position ~= 2 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.two[1]
+                p2SelectTable.y = shipSelectPositions.two[2]
+                p2SelectTable.position = 2
+                p2SelectTable.colorChosen = "blue"
+            end
+            -- P2 pos6 => left
+            if key == "left" and p2SelectTable.position == 6 and p1SelectTable.position ~= 5 then
+                p2SelectTable.top = false
+                p2SelectTable.x = shipSelectPositions.five[1]
+                p2SelectTable.y = shipSelectPositions.five[2]
+                p2SelectTable.position = 5
+                p2SelectTable.colorChosen = "cyan"
+            end
+            -- P2 pos6 => up
+            if key == "up" and p2SelectTable.position == 6 and p1SelectTable.position ~= 3 then
+                p2SelectTable.top = true
+                p2SelectTable.x = shipSelectPositions.three[1]
+                p2SelectTable.y = shipSelectPositions.three[2]
+                p2SelectTable.position = 3
+                p2SelectTable.colorChosen = "green"
+            end
         end
     end
 end
