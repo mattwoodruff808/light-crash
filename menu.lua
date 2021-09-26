@@ -232,6 +232,16 @@ function menuMousepressed(x, y, button)
                     computer = true
                 else
                     computer = false
+                    p1SelectTable.position = 1
+                    p1SelectTable.x = shipSelectPositions.one[1]
+                    p1SelectTable.y = shipSelectPositions.one[2]
+                    p1SelectTable.top = true
+                    p1SelectTable.colorChosen = "red"
+                    p2SelectTable.position = 2
+                    p2SelectTable.x = shipSelectPositions.two[1]
+                    p2SelectTable.y = shipSelectPositions.two[2]
+                    p2SelectTable.top = true
+                    p2SelectTable.colorChosen = "blue"
                 end
             end
         end
